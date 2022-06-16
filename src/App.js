@@ -11,6 +11,23 @@ function App() {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDirector, setMovieDirector] = useState('');
   const [movieColor, setMovieColor] = useState('');
+  const [movieYear, setMovieYear] = useState('');
+
+  function submitMovie(e) {
+    e.preventDefault();
+    const flick = {
+      name: movieTitle,
+      year: movieYear,
+      director: movieDirector,
+      color: movieColor,
+    };
+    const updatedMovies = [...allMovies, flick];
+    setAllMovies(updatedMovies);
+    setMovieTitle('');
+    setMovieYear('');
+    setMovieDirector('');
+    setMovieColor('');
+  }
 
   return (
     <div className="App">
