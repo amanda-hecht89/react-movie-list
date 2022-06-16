@@ -33,10 +33,25 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className='add-movie'>
-          <Movie />
+          <Movie flick={{
+            name: movieTitle,
+            year: movieYear,
+            director: movieDirector,
+            color: movieColor,
+          }}/>
         </div>
         <div className='movie-filter'>
-          <MovieForm />
+          <MovieForm 
+            submitMovie={submitMovie}
+            movieTitle={movieTitle}
+            setMovieTitle={setMovieTitle}
+            movieYear={movieYear}
+            setMovieYear={setMovieYear}
+            movieDirector={movieDirector}
+            setMovieDirector={setMovieDirector}
+            movieColor={movieColor}
+            setMovieColor={setMovieColor}
+          />
         </div>
         <div className='movie-list'>
           <MovieList />
