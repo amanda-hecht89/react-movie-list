@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.movieForm {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid;
+  margin: 10px;
+  
+}
