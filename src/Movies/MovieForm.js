@@ -20,8 +20,15 @@ export default function MovieForm({ movieTitle, setMovieTitle,
         </label>
         <label>
                 Genre Color:
-          <input value={movieColor} onChange={e => setMovieColor(e.target.value)} />
+          <select className="dropDown" value={movieColor} onChange={e => setMovieColor(e.target.value)}>
+            <option value="pink">Romance - Pink</option>
+            <option value="blue">Action - Blue</option>
+            <option value="green">Comedy - Green</option>
+            <option value="red">Horror - Red</option>
+            <option value="orange">Drama - Orange</option>
+          </select>
         </label>
+        <button className="button">Add Movie To<br/> WatchList</button>
       </form>
 
 
