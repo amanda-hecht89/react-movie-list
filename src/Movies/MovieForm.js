@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function MovieForm({ movieTitle, setMovieTitle, 
   movieDirector, setMovieDirector, movieColor, 
-  setMovieColor, movieYear, setMovieYear }) {
+  setMovieColor, movieYear, setMovieYear, submitMovie }) {
   return (
     <div className='movieFormContainer'>
-      <form className='movieForm'>
+      <form className='movieForm' onSubmit={submitMovie}>
         <label>
                 Title:
           <input value={movieTitle} onChange={e => setMovieTitle(e.target.value)} />

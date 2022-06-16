@@ -1,7 +1,12 @@
 import React from 'react';
+import './App.css';
 
-export default function Movie() {
+export default function Movie({ name, director, color, year, deleteMovie }) {
   return (
-    <div>Movie</div>
+    <div onClick={() => deleteMovie ? deleteMovie(name) : null} className='items' style={{ background: color }}>
+      <h3>{name}</h3>
+      <p>By: {director}</p>
+      <p>made in {year}</p>
+    </div>
   );
 }
