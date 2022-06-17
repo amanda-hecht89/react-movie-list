@@ -4,6 +4,7 @@ import MovieForm from './Movies/MovieForm';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
 import useMovieForm from './UseMovieForm';
+import React from 'react';
 
 function App() {
 //current movies movies//
@@ -24,12 +25,12 @@ function App() {
   }, [showMovies, allMovies]);
 
   function addMovie(newMovie) {
-    const updatedMovies = [...addMovie, newMovie];
+    const updatedMovies = [...allMovies, newMovie];
     setAllMovies(updatedMovies);
   }
 
   function deleteMovie(name) {
-    const index = addMovie.findIndex(addMovie => allMovies.name === name);
+    const index = addMovie.findIndex(allMovies => allMovies.name === name);
     allMovies.splice(index, 1);
     setShowMovies('');
     setAllMovies([...addMovie]);
