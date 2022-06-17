@@ -30,10 +30,10 @@ function App() {
   }
 
   function deleteMovie(name) {
-    const index = addMovie.findIndex(allMovies => allMovies.name === name);
+    const index = allMovies.findIndex(allMovies => allMovies.name === name);
     allMovies.splice(index, 1);
     setShowMovies('');
-    setAllMovies([...addMovie]);
+    setAllMovies([...allMovies]);
   }
 
   return (

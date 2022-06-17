@@ -37,6 +37,7 @@ export default function MovieForm({ movieTitle, setMovieTitle,
         <label>
                 Genre Color:
           <select className="dropDown" value={movieColor} onChange={e => setMovieColor(e.target.value)}>
+            <option value="blank">Pick a Color!</option>
             <option value="pink">Romance - Pink</option>
             <option value="blue">Action - Blue</option>
             <option value="green">Comedy - Green</option>
