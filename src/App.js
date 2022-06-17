@@ -30,7 +30,7 @@ function App() {
   }
 
   function deleteMovie(name) {
-    const index = allMovies.findIndex(allMovies => allMovies.name === name);
+    const index = allMovies.findIndex(movie => movie.name === name);
     allMovies.splice(index, 1);
     setShowMovies('');
     setAllMovies([...allMovies]);
@@ -38,14 +38,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" >
         <div className='add-movie'>
-          <Movie flick={{
-            name: { movieTitle },
-            year: { movieYear },
-            director: { movieDirector },
-            color: { movieColor }
-          }}/>
+          <Movie 
+            name={ movieTitle }
+            year={ movieYear }
+            director={ movieDirector }
+            color={ movieColor }
+          />
         </div>
         <div className='movie-filter'>
           <MovieForm 
@@ -59,6 +59,12 @@ function App() {
             setMovieColor={setMovieColor}
             addMovie={addMovie}
           />
+        </div>
+        <div className='filter'>
+          <h1>Filter Movie</h1>
+          <input value={showMovies} onChange={(e) => setShowMovies(e.target.value)} />
+
+
         </div>
         <div className='movie-list'>
           <MovieList allMovies={

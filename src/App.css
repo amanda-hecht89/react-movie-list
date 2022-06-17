@@ -63,6 +63,7 @@
   height: 150px;
   border: 4px solid black;
   margin: 10px;
+  font-size: 18px;
 
 }
 .moviesHere {
@@ -71,4 +72,9 @@
   justify-content: center;
   flex-wrap: wrap;
 
+}
+
+.filter {
+  width: 35%;
+  font-size: 15px;
 }
