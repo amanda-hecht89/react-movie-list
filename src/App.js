@@ -1,33 +1,25 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MovieForm from './Movies/MovieForm';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
+import { useMovieForm } from './UseMovieForm';
 
 function App() {
 
   const [allMovies, setAllMovies] = useState([]);
   const [showMovies, setShowMovies] = useState([]);
-  const [movieTitle, setMovieTitle] = useState('');
-  const [movieDirector, setMovieDirector] = useState('');
-  const [movieColor, setMovieColor] = useState('');
-  const [movieYear, setMovieYear] = useState('');
+  const [updatedMovies, setUpdatedMovies] = useState([]);
 
-  function submitMovie(e) {
-    e.preventDefault();
-    const flick = {
-      name: movieTitle,
-      year: movieYear,
-      director: movieDirector,
-      color: movieColor,
-    };
-    const updatedMovies = [...allMovies, flick];
-    setAllMovies(updatedMovies);
-    setMovieTitle('');
-    setMovieYear('');
-    setMovieDirector('');
-    setMovieColor('');
-  }
+
+  const { movieTitle, setMovieTitle, movieDirector, setMovieDirector, 
+    movieColor, setMovieColor, movieYear, setMovieYear } = useMovieForm();
+
+  useEffect(() => {
+    const updatedMovies = flick
+    filter(flick => movieColor.name.includes(allMovies));
+    setUpdatedMovies(updatedMovies);
+  }, [allMovies, flick]);
 
   return (
     <div className="App">

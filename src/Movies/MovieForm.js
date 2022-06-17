@@ -2,8 +2,24 @@ import React from 'react';
 
 export default function MovieForm({ movieTitle, setMovieTitle, 
   movieDirector, setMovieDirector, movieColor, 
-  setMovieColor, movieYear, setMovieYear, submitMovie }) {
-  return (
+  setMovieColor, movieYear, setMovieYear, addMovie }) {
+
+  function submitMovie(e) {
+    e.preventDefault();
+    const flick = {
+      name: movieTitle,
+      year: movieYear,
+      director: movieDirector,
+      color: movieColor,
+    };
+    addMovie(flick);
+    setMovieTitle('');
+    setMovieDirector('');
+    setMovieYear('');
+    setMovieColor('');
+  }
+
+  return ( 
     <div className='movieFormContainer'>
       <form className='movieForm' onSubmit={submitMovie}>
         <label>
@@ -30,8 +46,6 @@ export default function MovieForm({ movieTitle, setMovieTitle,
         </label>
         <button className="button">Add Movie To<br/> WatchList</button>
       </form>
-
-
     </div>
   );
 }
