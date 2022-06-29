@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     setVisibleMovie(allMovies);
-    setFilterString('');
+    //setFilterString('');
   }, [allMovies]);
 
   function filterMovies(filterString) {
@@ -70,7 +70,7 @@ function App() {
         </div>
         <div className='filter'>
           <h1>Filter Movie</h1>
-          <input value={showMovies} onChange={(e) => filterMovies(e.target.value)} />
+          <input value={filterString} onChange={(e) => filterMovies(e.target.value)} />
 
 
         </div>
