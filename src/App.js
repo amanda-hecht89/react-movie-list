@@ -8,21 +8,20 @@ import React from 'react';
 
 function App() {
 //current movies movies//
-  const [showMovies, setShowMovies] = useState('');
   //all movies//
   const [allMovies, setAllMovies] = useState([]);
   //filtered movies//
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filterString, setFilterString] = useState('');
-  const [visibleMovie, setVisibleMovie] = useState('');
+//  const [visibleMovie, setVisibleMovie] = useState('');
 
 
   const { movieTitle, setMovieTitle, movieDirector, setMovieDirector, 
     movieColor, setMovieColor, movieYear, setMovieYear } = useMovieForm();
 
   useEffect(() => {
-    setVisibleMovie(allMovies);
-    //setFilterString('');
+    setFilteredMovies(allMovies);
+    setFilterString('');
   }, [allMovies]);
 
   function filterMovies(filterString) {
@@ -40,8 +39,7 @@ function App() {
   function deleteMovie(name) {
     const index = allMovies.findIndex(movie => movie.name === name);
     allMovies.splice(index, 1);
-    setShowMovies('');
-    setAllMovies([...allMovies]);
+    setFilteredMovies([...allMovies]);
   }
 
   return (
