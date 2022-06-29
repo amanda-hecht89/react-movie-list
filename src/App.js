@@ -13,16 +13,24 @@ function App() {
   const [allMovies, setAllMovies] = useState([]);
   //filtered movies//
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filterString, setFilterString] = useState('');
+  const [visibleMovie, setVisibleMovie] = useState('');
 
 
   const { movieTitle, setMovieTitle, movieDirector, setMovieDirector, 
     movieColor, setMovieColor, movieYear, setMovieYear } = useMovieForm();
 
   useEffect(() => {
+    setVisibleMovie(allMovies);
+    setFilterString('');
+  }, [allMovies]);
+
+  function filterMovies(filterString) {
+    setFilterString(filterString);
     const filteredMovies = allMovies
-      .filter(movie => movie.name.includes(showMovies));
+      .filter(movie => movie.name.includes(filterString));
     setFilteredMovies(filteredMovies);
-  }, [showMovies, allMovies]);
+  }
 
   function addMovie(newMovie) {
     const updatedMovies = [...allMovies, newMovie];
@@ -62,7 +70,7 @@ function App() {
         </div>
         <div className='filter'>
           <h1>Filter Movie</h1>
-          <input value={showMovies} onChange={(e) => setShowMovies(e.target.value)} />
+          <input value={showMovies} onChange={(e) => filterMovies(e.target.value)} />
 
 
         </div>
