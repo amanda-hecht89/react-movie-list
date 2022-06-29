@@ -1,22 +1,85 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import MovieForm from './Movies/MovieForm';
+import MovieList from './Movies/MovieList';
+import Movie from './Movies/Movie';
+import useMovieForm from './UseMovieForm';
+import React from 'react';
 
 function App() {
+//current movies movies//
+  //all movies//
+  const [allMovies, setAllMovies] = useState([]);
+  //filtered movies//
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filterString, setFilterString] = useState('');
+//  const [visibleMovie, setVisibleMovie] = useState('');
+
+
+  const { movieTitle, setMovieTitle, movieDirector, setMovieDirector, 
+    movieColor, setMovieColor, movieYear, setMovieYear } = useMovieForm();
+
+  useEffect(() => {
+    setFilteredMovies(allMovies);
+    setFilterString('');
+  }, [allMovies]);
+
+  function filterMovies(filterString) {
+    setFilterString(filterString);
+    const filteredMovies = allMovies
+      .filter(movie => movie.name.includes(filterString));
+    setFilteredMovies(filteredMovies);
+  }
+
+  function addMovie(newMovie) {
+    const updatedMovies = [...allMovies, newMovie];
+    setAllMovies(updatedMovies);
+  }
+
+  function deleteMovie(name) {
+    const index = allMovies.findIndex(movie => movie.name === name);
+    allMovies.splice(index, 1);
+    setFilteredMovies([...allMovies]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header" >
+        <div className='add-movie'>
+          <Movie 
+            name={ movieTitle }
+            year={ movieYear }
+            director={ movieDirector }
+            color={ movieColor }
+          />
+        </div>
+        <div className='movie-filter'>
+          <MovieForm 
+            movieTitle={movieTitle}
+            setMovieTitle={setMovieTitle}
+            movieYear={movieYear}
+            setMovieYear={setMovieYear}
+            movieDirector={movieDirector}
+            setMovieDirector={setMovieDirector}
+            movieColor={movieColor}
+            setMovieColor={setMovieColor}
+            addMovie={addMovie}
+          />
+        </div>
+        <div className='filter'>
+          <h1>Filter Movie</h1>
+          <input value={filterString} onChange={(e) => filterMovies(e.target.value)} />
+
+
+        </div>
+        <div className='movie-list'>
+          <MovieList allMovies={
+            filteredMovies.length 
+              ? filteredMovies 
+              : allMovies
+          } 
+          deleteMovie={deleteMovie}/>
+        </div>
       </header>
     </div>
   );
